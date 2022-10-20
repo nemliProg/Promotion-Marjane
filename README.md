@@ -18,10 +18,10 @@ Pour une meilleure gestion des promotions Marjane exige que toutes les promotion
 
 ### Travail demandé par Marjane :
 
--Réaliser la partie Backend en JAVA/JPA/Hibernate(utilisation des lambda expression + streams)
--Ajouter les tests unitaires nécessaires
--Ajouter une base de données PostgreSQL adéquate au système
--Organiser votre projet avec un outil de votre choix
+- Réaliser la partie Backend en JAVA/JPA/Hibernate(utilisation des lambda expression + streams)
+- Ajouter les tests unitaires nécessaires
+- Ajouter une base de données PostgreSQL adéquate au système
+- Organiser votre projet avec un outil de votre choix
 
 ### Compétences visées
 - Créer une base de données.
