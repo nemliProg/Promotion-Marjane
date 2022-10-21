@@ -1,4 +1,4 @@
-package com.marjane.promotionmarjane;
+package com.marjane.promotionmarjane.servlets;
 
 import java.io.*;
 
