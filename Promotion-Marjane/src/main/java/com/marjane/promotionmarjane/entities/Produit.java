@@ -1,10 +1,11 @@
-package com.marjane.promotionmarjane.entity;
+package com.marjane.promotionmarjane.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
-@Table(name = "produit", schema = "public", catalog = "marjane")
-public class ProduitEntity {
+public class Produit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -14,16 +15,13 @@ public class ProduitEntity {
     private String nom;
     @Basic
     @Column(name = "prix")
-    private double prix;
-    @Basic
-    @Column(name = "intial_prix")
-    private double intialPrix;
+    private BigDecimal prix;
     @Basic
     @Column(name = "id_cat")
     private long idCat;
     @ManyToOne
     @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
-    private CategorieEntity categorieByIdCat;
+    private Categorie categorieByIdCat;
 
     public long getId() {
         return id;
@@ -41,20 +39,12 @@ public class ProduitEntity {
         this.nom = nom;
     }
 
-    public double getPrix() {
+    public BigDecimal getPrix() {
         return prix;
     }
 
-    public void setPrix(double prix) {
+    public void setPrix(BigDecimal prix) {
         this.prix = prix;
-    }
-
-    public double getIntialPrix() {
-        return intialPrix;
-    }
-
-    public void setIntialPrix(double intialPrix) {
-        this.intialPrix = intialPrix;
     }
 
     public long getIdCat() {
@@ -70,36 +60,30 @@ public class ProduitEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProduitEntity that = (ProduitEntity) o;
+        Produit produit = (Produit) o;
 
-        if (id != that.id) return false;
-        if (Double.compare(that.prix, prix) != 0) return false;
-        if (Double.compare(that.intialPrix, intialPrix) != 0) return false;
-        if (idCat != that.idCat) return false;
-        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
+        if (id != produit.id) return false;
+        if (idCat != produit.idCat) return false;
+        if (nom != null ? !nom.equals(produit.nom) : produit.nom != null) return false;
+        if (prix != null ? !prix.equals(produit.prix) : produit.prix != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (id ^ (id >>> 32));
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
-        temp = Double.doubleToLongBits(prix);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(intialPrix);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (prix != null ? prix.hashCode() : 0);
         result = 31 * result + (int) (idCat ^ (idCat >>> 32));
         return result;
     }
 
-    public CategorieEntity getCategorieByIdCat() {
+    public Categorie getCategorieByIdCat() {
         return categorieByIdCat;
     }
 
-    public void setCategorieByIdCat(CategorieEntity categorieByIdCat) {
+    public void setCategorieByIdCat(Categorie categorieByIdCat) {
         this.categorieByIdCat = categorieByIdCat;
     }
 }
