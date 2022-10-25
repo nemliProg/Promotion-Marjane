@@ -3,7 +3,22 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="default">
+    <persistence-unit name="marjane-promotions">
+        <class>com.marjane.promotionmarjane.entities.Admin</class>
+        <class>com.marjane.promotionmarjane.entities.Categorie</class>
+        <class>com.marjane.promotionmarjane.entities.Centre</class>
+        <class>com.marjane.promotionmarjane.entities.Produit</class>
+        <class>com.marjane.promotionmarjane.entities.Promotion</class>
+        <class>com.marjane.promotionmarjane.entities.Responsable</class>
+        <class>com.marjane.promotionmarjane.entities.SubAdmin</class>
 
+
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/marjane"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="bakayoko123"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>

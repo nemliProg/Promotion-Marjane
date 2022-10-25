@@ -81,13 +81,13 @@
                     </h1>
                     <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                         <div class="rounded-md shadow">
-                            <a href="login-admin" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-marjane-blue hover:text-marjane-yellow md:py-4 md:text-lg md:px-10"> Admin </a>
+                            <a href="login-admin" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#085da8] hover:text-[#ffe800] md:py-4 md:text-lg md:px-10"> Admin </a>
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
-                            <a href="login-subadmin" class="w-full flex items-center justify-center px-8 py-3 border border-marjane-blue hover:bg-marjane-bleu hover:text-marjane-yellow text-base font-medium rounded-md text-marjane-blue md:py-4 md:text-lg md:px-10"> SubAdmin </a>
+                            <a href="login-subadmin" class="w-full flex items-center justify-center px-8 py-3 border border-[#085da8] hover:bg-[#085da8] hover:text-[#ffe800] text-base font-medium rounded-md text-[#ffe800] md:py-4 md:text-lg md:px-10"> SubAdmin </a>
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
-                            <a href="login-responsable" class="w-full flex items-center justify-center px-8 py-3 border border-marjane-blue hover:bg-marjane-bleu hover:text-marjane-yellow text-base font-medium rounded-md text-marjane-blue md:py-4 md:text-lg md:px-10"> Responsable </a>
+                            <a href="login-responsable" class="w-full flex items-center justify-center px-8 py-3 border border-[#085da8] hover:bg-[#085da8] hover:text-[#ffe800] text-base font-medium rounded-md text-[#ffe800] md:py-4 md:text-lg md:px-10"> Responsable </a>
                         </div>
                     </div>
                 </div>

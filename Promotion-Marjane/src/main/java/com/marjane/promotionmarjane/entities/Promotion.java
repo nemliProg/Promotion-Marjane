@@ -22,11 +22,17 @@ public class Promotion {
     @Basic
     @Column(name = "description")
     private String description;
+    @Basic
+    @Column(name = "status")
+    private Object status;
+    @Basic
+    @Column(name = "explanation")
+    private String explanation;
     @ManyToOne
-    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByIdCat;
     @ManyToOne
-    @JoinColumn(name = "id_centre", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_centre", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Centre centreByIdCentre;
 
     public long getId() {
@@ -69,6 +75,37 @@ public class Promotion {
         this.description = description;
     }
 
+    public Object getStatus() {
+        return status;
+    }
+
+    public void setStatus(Object status) {
+        this.status = status;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    @Override
+    public String toString() {
+        return "Promotion{" +
+                "id=" + id +
+                ", idCat=" + idCat +
+                ", idCentre=" + idCentre +
+                ", pourcentage=" + pourcentage +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", explanation='" + explanation + '\'' +
+                ", categorieByIdCat=" + categorieByIdCat +
+                ", centreByIdCentre=" + centreByIdCentre +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,6 +120,9 @@ public class Promotion {
             return false;
         if (description != null ? !description.equals(promotion.description) : promotion.description != null)
             return false;
+        if (status != null ? !status.equals(promotion.status) : promotion.status != null) return false;
+        if (explanation != null ? !explanation.equals(promotion.explanation) : promotion.explanation != null)
+            return false;
 
         return true;
     }
@@ -94,6 +134,8 @@ public class Promotion {
         result = 31 * result + (int) (idCentre ^ (idCentre >>> 32));
         result = 31 * result + (pourcentage != null ? pourcentage.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (explanation != null ? explanation.hashCode() : 0);
         return result;
     }
 

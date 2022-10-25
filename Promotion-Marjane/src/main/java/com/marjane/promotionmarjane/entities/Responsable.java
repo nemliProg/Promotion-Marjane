@@ -3,7 +3,6 @@ package com.marjane.promotionmarjane.entities;
 import jakarta.persistence.*;
 
 @Entity
-@IdClass(ResponsablePK.class)
 public class Responsable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -26,10 +25,10 @@ public class Responsable {
     @Column(name = "password")
     private String password;
     @ManyToOne
-    @JoinColumn(name = "id_centre", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_centre", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Centre centreByIdCentre;
     @ManyToOne
-    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByIdCat;
 
     public long getIdCentre() {
@@ -78,6 +77,20 @@ public class Responsable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Responsable{" +
+                "idCentre=" + idCentre +
+                ", idCat=" + idCat +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", centreByIdCentre=" + centreByIdCentre +
+                ", categorieByIdCat=" + categorieByIdCat +
+                '}';
     }
 
     @Override

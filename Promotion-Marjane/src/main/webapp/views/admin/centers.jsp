@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     if (session.getAttribute("admin") == null)       {
-        response.sendRedirect("hello-servlet");
+        response.sendRedirect("/login-admin");
     }
 %>
 <jsp:include page="../inc/top.jsp" />
@@ -53,11 +53,11 @@
 
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div class="flex-shrink-0 flex items-center px-4">
-                    <img class="h-8 w-auto" src="./images/logos/logo_marjane.svg" alt="Workflow">
+                    <img class="h-8 w-auto" src="/images/logos/logo_marjane.svg" alt="Workflow">
                 </div>
                 <nav class="mt-5 px-2 space-y-1">
                     <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                    <a href="dashboard-admin" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                    <a href="/dashboard-admin" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                         <!--
                           Heroicon name: outline/home
                           Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
@@ -68,7 +68,7 @@
                         Dashboard
                     </a>
 
-                    <a href="admin/sub-admins" class="bg-gray-100 text-gray-900 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                    <a href="/admin/sub-admins" class="bg-gray-100 text-gray-900 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                         <!-- Heroicon name: outline/users -->
                         <svg class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -76,7 +76,7 @@
                         Sub Admins
                     </a>
 
-                    <a href="admin/centers" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                    <a href="/admin/centers" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                         <!-- Heroicon name: outline/folder -->
                         <svg class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -116,7 +116,7 @@
                 </div>
                 <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
                     <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                    <a href="dashboard-admin" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <a href="/dashboard-admin" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                         <!--
                           Heroicon name: outline/home
 
@@ -128,7 +128,7 @@
                         Dashboard
                     </a>
 
-                    <a href="admin/sub-admins" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <a href="/admin/sub-admins" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                         <!-- Heroicon name: outline/users -->
                         <svg class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -136,7 +136,7 @@
                         Sub Admins
                     </a>
 
-                    <a href="admin/centers" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <a href="/admin/centers" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                         <!-- Heroicon name: outline/folder -->
                         <svg class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -179,7 +179,75 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                     <!-- Replace with your content -->
                     <div class="py-4">
+                        <h2 class="font-bold text-2xl">List of Admins And there Centers</h2>
+                        <div class="p-4 w-full gap-4">
+                            <div class="flex flex-col">
+                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                            <table class="min-w-full divide-y divide-gray-200">
+                                                <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Center Name</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <!-- Odd row -->
+                                                <c:forEach items="${centers}" var="center" varStatus="i" >
+                                                    <c:choose>
+                                                        <c:when test="${i.count % 2 == 0 }">
+                                                            <tr class="bg-white">
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${center.id}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.ville}" /></td>
+                                                            </tr>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <tr class="bg-gray-50">
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${center.id}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.ville}" /></td>
+                                                            </tr>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                                <!-- More people... -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <form action="/admin/centers" method="POST">
+                                <div class="shadow sm:rounded-md sm:overflow-hidden">
+                                    <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+                                        <div>
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Add A Center</h3>
+                                        </div>
 
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="centerName" class="block text-sm font-medium text-gray-700">Center Name</label>
+                                                <input type="text" name="centerName" id="centerName" autocomplete="given-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            </div>
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                                                <input type="text" name="city" id="city" autocomplete="family-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                        <button type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- /End replace -->
                 </div>

@@ -20,7 +20,7 @@ public class Produit {
     @Column(name = "id_cat")
     private long idCat;
     @ManyToOne
-    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByIdCat;
 
     public long getId() {
@@ -53,6 +53,17 @@ public class Produit {
 
     public void setIdCat(long idCat) {
         this.idCat = idCat;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prix=" + prix +
+                ", idCat=" + idCat +
+                ", categorieByIdCat=" + categorieByIdCat +
+                '}';
     }
 
     @Override

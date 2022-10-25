@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/marjane</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">bakayoko123</property>
+        <property name="show_sql">true</property>
+        <mapping class="com.marjane.promotionmarjane.entities.Admin"/>
+        <mapping class="com.marjane.promotionmarjane.entities.Categorie"/>
+        <mapping class="com.marjane.promotionmarjane.entities.Centre"/>
+        <mapping class="com.marjane.promotionmarjane.entities.Produit"/>
+        <mapping class="com.marjane.promotionmarjane.entities.Promotion"/>
+        <mapping class="com.marjane.promotionmarjane.entities.Responsable"/>
+        <mapping class="com.marjane.promotionmarjane.entities.SubAdmin"/>
+
+
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

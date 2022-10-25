@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     if (session.getAttribute("admin") == null)       {
-        response.sendRedirect("hello-servlet");
+        response.sendRedirect("login-admin");
     }
 %>
 <jsp:include page="../inc/top.jsp" />
@@ -113,7 +113,7 @@
         <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
-                    <img class="h-8 w-auto" src="./images/logos/logo_marjane.svg" alt="Workflow">
+                    <img class="h-16 w-36" src="./images/logos/logo_marjane.svg" alt="Workflow">
                 </div>
                 <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
                     <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
@@ -150,12 +150,9 @@
             <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
                 <a href="#" class="flex-shrink-0 w-full group block">
                     <div class="flex items-center">
-                        <div>
-                            <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                        </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
                         </div>
                     </div>
                 </a>
@@ -180,6 +177,140 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                     <!-- Replace with your content -->
                     <div class="py-4">
+                        <h2 class="font-bold text-2xl">List of Centers And there Admins</h2>
+                        <div class="p-4">
+                            <div class="flex flex-col">
+                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                            <table class="min-w-full divide-y divide-gray-200">
+                                                <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Center Name</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Admin Full Name</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <!-- Odd row -->
+                                                <c:forEach items="${subAdmins}" var="subAdmin" varStatus="i" >
+                                                    <c:choose>
+                                                        <c:when test="${i.count % 2 == 0 }">
+                                                            <tr class="bg-white">
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${subAdmin.centreById.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.centreById.ville}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.nom}" /> <c:out value="${subAdmin.prenom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.email}" /></td>
+                                                            </tr>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <tr class="bg-gray-50">
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${subAdmin.centreById.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.centreById.ville}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.nom}" /> <c:out value="${subAdmin.prenom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.email}" /></td>
+                                                            </tr>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <!-- More people... -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-row md:flex-col gap-4">
+                            <div>
+                                <div class="flex flex-col">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Center Name</th>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <!-- Odd row -->
+                                                        <c:forEach items="${centers}" var="center" varStatus="i">
+                                                            <c:choose>
+                                                                <c:when test="${o.count % 2 == 0}">
+                                                                    <tr class="bg-white">
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${center.id}" /></td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.nom}" /></td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.ville}" /></td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <tr class="bg-gray-50">
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${center.id}" /></td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.nom}" /></td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${center.ville}" /></td>
+                                                                    </tr>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+                                                    <!-- More people... -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex flex-col">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">full name</th>
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <!-- Odd row -->
+                                                    <c:forEach items="${subAdmins}" var="subAdmin" varStatus="i" >
+                                                        <c:choose>
+                                                            <c:when test="${i.count % 2 == 0 }">
+                                                                <tr class="bg-white">
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${subAdmin.id}" /></td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.nom}" /> <c:out value="${subAdmin.prenom}" /></td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.email}" /></td>
+                                                                </tr>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <tr class="bg-gray-50">
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${subAdmin.id}" /></td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.nom}" /> <c:out value="${subAdmin.prenom}" /></td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${subAdmin.email}" /></td>
+                                                                </tr>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                    <!-- More people... -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
                     <!-- /End replace -->

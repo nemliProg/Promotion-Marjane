@@ -37,6 +37,17 @@ public class Categorie {
     }
 
     @Override
+    public String toString() {
+        return "Categorie{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", produitsById=" + produitsById +
+                ", promotionsById=" + promotionsById +
+                ", responsablesById=" + responsablesById +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    if (session.getAttribute("admin") != null)       {
-        response.sendRedirect("dashboard-admin");
+    if (session.getAttribute("responsable") != null)       {
+        response.sendRedirect("/hello-servlet");
     }
 %>
 <html class="h-full bg-white">
 <head>
-    <title>Admin - Login</title>
+    <title>Responsable - Login</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.4/dist/cdn.min.js"></script>
 </head>
@@ -17,12 +17,12 @@
         <div class="mx-auto w-full max-w-sm lg:w-96">
             <div>
                 <img class="h-28 w-28" src="./images/logos/logo_marjane.svg" alt="logo">
-                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your Admin account</h2>
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your Responsable account</h2>
             </div>
 
             <div class="mt-8">
                 <div class="mt-6">
-                    <form action="login-admin" method="POST" class="space-y-6">
+                    <form action="/login-responsable" method="POST" class="space-y-6">
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
                             <div class="mt-1">
@@ -49,8 +49,6 @@
                                 <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password? </a>
                             </div>
                         </div>
-
-
                         <div>
                             <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
                         </div>

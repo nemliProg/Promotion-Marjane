@@ -48,6 +48,15 @@ public class Centre {
     }
 
     @Override
+    public String toString() {
+        return "Centre{" +
+                "id=" + id +
+                ", ville='" + ville + '\'' +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
