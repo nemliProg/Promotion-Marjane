@@ -26,7 +26,15 @@ public class DashboardAdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            request.getRequestDispatcher("/views/admin/login.jsp").forward(request,response);
+        }else {
+            Object check = session.getAttribute("admin");
+            if (check == null) {
+                request.getRequestDispatcher("/views/admin/login.jsp").forward(request, response);
+            }
+        }
         ArrayList<SubAdmin> subAdmins = subAdminDao.getAllSubAdmins();
         ArrayList<Centre> centres = centreDao.getAllCenters();
 
