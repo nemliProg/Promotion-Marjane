@@ -14,21 +14,29 @@ public class LoginSubAdminServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         this.subAdminDao = new SubAdminDao();
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+       HttpSession session = request.getSession(false);
+       if(session != null){
+            Object check = session.getAttribute("sub");
+            if(check != null)
+                request.getRequestDispatcher("/views/sub-admin/dashboard.jsp").forward(request,response);
+       }
         request.getRequestDispatcher("/views/sub-admin/login.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean login = subAdminDao.validate(email, password);
         if(login){
+            HttpSession session = request.getSession();
             session.setAttribute("sub", email);
             response.sendRedirect("/hello-servlet");
         }else{
