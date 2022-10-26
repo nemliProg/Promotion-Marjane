@@ -2,6 +2,7 @@ package com.marjane.promotionmarjane.dao.daoImp;
 
 import com.marjane.promotionmarjane.dao.AbstractHibernateDAO;
 import com.marjane.promotionmarjane.entities.Admin;
+import com.marjane.promotionmarjane.entities.Promotion;
 import com.marjane.promotionmarjane.entities.Responsable;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
@@ -52,8 +53,18 @@ public class ResponsableDao extends AbstractHibernateDAO<Responsable> {
         super.insert(entity);
     }
 
-    public ArrayList<Responsable> getAll() {
-        return null;
+    public ArrayList<Responsable> getAllResponsables()  {
+        try {
+            Session session = getCurrentSession();
+            session.getTransaction();
+            session.beginTransaction();
+            ArrayList<Responsable> responsables = (ArrayList<Responsable>) session.createQuery("SELECT r FROM Responsable r", Responsable.class).getResultList();
+            session.getTransaction().commit();
+            session.close();
+            return responsables;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
