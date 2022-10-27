@@ -24,6 +24,16 @@ public class CategorieDao extends AbstractHibernateDAO<Categorie> {
         super.delete(entity);
     }
 
+    public Categorie getOneCat(long Id) throws Exception {
+        Session session = getCurrentSession();
+        session.getTransaction();
+        session.beginTransaction();
+        Categorie categorie = session.find(Categorie.class, Id);
+        session.getTransaction().commit();
+        session.close();
+        return categorie;
+    }
+
 
     public ArrayList<Categorie> getAllCategories()  {
         try {
