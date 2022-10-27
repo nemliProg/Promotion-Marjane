@@ -16,11 +16,9 @@ public class Produit {
     @Basic
     @Column(name = "prix")
     private BigDecimal prix;
-    @Basic
-    @Column(name = "id_cat")
-    private long idCat;
+
     @ManyToOne
-    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
     private Categorie categorieByIdCat;
 
     public long getId() {
@@ -47,24 +45,7 @@ public class Produit {
         this.prix = prix;
     }
 
-    public long getIdCat() {
-        return idCat;
-    }
 
-    public void setIdCat(long idCat) {
-        this.idCat = idCat;
-    }
-
-    @Override
-    public String toString() {
-        return "Produit{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prix=" + prix +
-                ", idCat=" + idCat +
-                ", categorieByIdCat=" + categorieByIdCat +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,7 +55,6 @@ public class Produit {
         Produit produit = (Produit) o;
 
         if (id != produit.id) return false;
-        if (idCat != produit.idCat) return false;
         if (nom != null ? !nom.equals(produit.nom) : produit.nom != null) return false;
         if (prix != null ? !prix.equals(produit.prix) : produit.prix != null) return false;
 
@@ -86,7 +66,6 @@ public class Produit {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prix != null ? prix.hashCode() : 0);
-        result = 31 * result + (int) (idCat ^ (idCat >>> 32));
         return result;
     }
 

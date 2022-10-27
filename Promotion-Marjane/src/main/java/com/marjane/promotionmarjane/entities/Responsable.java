@@ -3,6 +3,7 @@ package com.marjane.promotionmarjane.entities;
 import jakarta.persistence.*;
 
 @Entity
+@IdClass(ResponsablePK.class)
 public class Responsable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -77,20 +78,6 @@ public class Responsable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Responsable{" +
-                "idCentre=" + idCentre +
-                ", idCat=" + idCat +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", centreByIdCentre=" + centreByIdCentre +
-                ", categorieByIdCat=" + categorieByIdCat +
-                '}';
     }
 
     @Override

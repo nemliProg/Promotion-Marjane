@@ -22,7 +22,7 @@ public class SubAdmin {
     @Column(name = "password")
     private String password;
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     private Centre centreById;
 
     public long getId() {
@@ -63,18 +63,6 @@ public class SubAdmin {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "SubAdmin{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", centreById=" + centreById +
-                '}';
     }
 
     @Override

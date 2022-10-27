@@ -18,17 +18,25 @@ public class LoginAdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            Object check = session.getAttribute("admin");
+            if(check != null){
+                request.getRequestDispatcher("/views/admin/dashboard.jsp").forward(request,response);
+                return;
+            }
+        }
         request.getRequestDispatcher("/views/admin/login.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean login = adminDao.validate(email, password);
         if(login){
+            HttpSession session = request.getSession();
             session.setAttribute("admin", email);
             response.sendRedirect("/dashboard-admin");
         }else{
