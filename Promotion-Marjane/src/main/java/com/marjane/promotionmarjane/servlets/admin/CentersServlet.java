@@ -29,6 +29,16 @@ public class CentersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //get parameters
+        String name = request.getParameter("centerName");
+        String ville = request.getParameter("city");
+        //create new centre
+        Centre centre = new Centre();
+        centre.setNom(name);
+        centre.setVille(ville);
+        //insert new centre
+        centreDao.insert(centre);
+        //redirect to the same page
         doGet(request,response);
     }
 }

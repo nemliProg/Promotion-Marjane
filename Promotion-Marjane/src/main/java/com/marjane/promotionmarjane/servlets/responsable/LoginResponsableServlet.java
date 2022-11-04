@@ -1,4 +1,4 @@
-package com.marjane.promotionmarjane.servlets.subadmin;
+package com.marjane.promotionmarjane.servlets.responsable;
 
 import com.marjane.promotionmarjane.dao.daoImp.ResponsableDao;
 import jakarta.servlet.*;
@@ -19,10 +19,11 @@ public class LoginResponsableServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        Object check = session.getAttribute("responsable");
-        if(session != null && check != null)
-            request.getRequestDispatcher("/views/responsable/promos.jsp").forward(request,response);
-
+        if(session != null){
+            Object check = session.getAttribute("responsable");
+            if(check != null)
+                request.getRequestDispatcher("/views/responsable/promos.jsp").forward(request,response);
+        }
         request.getRequestDispatcher("/views/responsable/login.jsp").forward(request,response);
     }
 
@@ -33,8 +34,8 @@ public class LoginResponsableServlet extends HttpServlet {
         boolean login = responsableDao.validate(email, password);
         if(login){
             HttpSession session = request.getSession();
-            session.setAttribute("responsable", email);
-            response.sendRedirect("/hello-servlet");
+            session.setAttribute("responsable", responsableDao.getResponsableByEmail(email));
+            response.sendRedirect("/responsable/promos");
         }else{
             request.setAttribute("echo","Password or Email you entered is incorrect");
             request.getRequestDispatcher("./views/responsable/login.jsp").forward(request, response);

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page session="false" %>
 <jsp:include page="./inc/top.jsp" />
 <div class="relative bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto">
-        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+        <div x-data="{ open: true }" class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                 <polygon points="50,0 100,0 50,100 0,100" />
             </svg>
@@ -17,7 +18,7 @@
                                     <img class="block h-14 w-24" src="./images/logos/logo_marjane.svg">
                                 </a>
                                 <div class="-mr-2 flex items-center md:hidden">
-                                    <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                                    <button @click="open = ! open" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                                         <span class="sr-only">Open main menu</span>
                                         <!-- Heroicon name: outline/menu -->
                                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -47,14 +48,14 @@
                     From: "opacity-100 scale-100"
                     To: "opacity-0 scale-95"
                 -->
-                <div class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+                <div x-show="open" class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
                     <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div class="px-5 pt-4 flex items-center justify-between">
                             <div>
-                                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
+                                <img class="h-8 w-auto" src="../images/logos/logo_marjane.svg" alt="">
                             </div>
                             <div class="-mr-2">
-                                <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                <button @click="open = ! open" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                     <span class="sr-only">Close main menu</span>
                                     <!-- Heroicon name: outline/x -->
                                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

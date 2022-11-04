@@ -1,7 +1,9 @@
 package com.marjane.promotionmarjane.entities;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Entity
 public class Promotion {
@@ -21,12 +23,20 @@ public class Promotion {
     @Basic
     @Column(name = "status")
     private String status;
-    @ManyToOne
-    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
-    private Categorie categorieByIdCat;
+    @Basic
+    @Column(name = "promostartdate",nullable = false)
+    private Date promoStartDate;
+    @Basic
+    @Column(name = "promoenddate",nullable = false)
+    private Date promoEndDate;
+
     @ManyToOne
     @JoinColumn(name = "id_centre", referencedColumnName = "id", nullable = false)
     private Centre centreByIdCentre;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cat", referencedColumnName = "id", nullable = false)
+    private Categorie categorieByIdCat;
 
     public long getId() {
         return id;
@@ -68,6 +78,22 @@ public class Promotion {
         this.status = status;
     }
 
+    public Date getPromoStartDate() {
+        return promoStartDate;
+    }
+
+    public void setPromoStartDate(Date promoStartDate) {
+        this.promoStartDate = promoStartDate;
+    }
+
+    public Date getPromoEndDate() {
+        return promoEndDate;
+    }
+
+    public void setPromoEndDate(Date promoEndDate) {
+        this.promoEndDate = promoEndDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,6 +109,10 @@ public class Promotion {
         if (explanation != null ? !explanation.equals(promotion.explanation) : promotion.explanation != null)
             return false;
         if (status != null ? !status.equals(promotion.status) : promotion.status != null) return false;
+        if (promoStartDate != null ? !promoStartDate.equals(promotion.promoStartDate) : promotion.promoStartDate != null)
+            return false;
+        if (promoEndDate != null ? !promoEndDate.equals(promotion.promoEndDate) : promotion.promoEndDate != null)
+            return false;
 
         return true;
     }
@@ -94,15 +124,9 @@ public class Promotion {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (explanation != null ? explanation.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (promoStartDate != null ? promoStartDate.hashCode() : 0);
+        result = 31 * result + (promoEndDate != null ? promoEndDate.hashCode() : 0);
         return result;
-    }
-
-    public Categorie getCategorieByIdCat() {
-        return categorieByIdCat;
-    }
-
-    public void setCategorieByIdCat(Categorie categorieByIdCat) {
-        this.categorieByIdCat = categorieByIdCat;
     }
 
     public Centre getCentreByIdCentre() {
@@ -111,5 +135,13 @@ public class Promotion {
 
     public void setCentreByIdCentre(Centre centreByIdCentre) {
         this.centreByIdCentre = centreByIdCentre;
+    }
+
+    public Categorie getCategorieByIdCat() {
+        return categorieByIdCat;
+    }
+
+    public void setCategorieByIdCat(Categorie categorieByIdCat) {
+        this.categorieByIdCat = categorieByIdCat;
     }
 }

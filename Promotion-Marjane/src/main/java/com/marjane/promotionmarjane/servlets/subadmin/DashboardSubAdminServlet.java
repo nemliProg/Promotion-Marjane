@@ -34,10 +34,12 @@ public class DashboardSubAdminServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if(session == null){
             request.getRequestDispatcher("/views/sub-admin/login.jsp").forward(request,response);
+            return;
         }else {
             Object check = session.getAttribute("sub");
             if (check == null) {
                 request.getRequestDispatcher("/views/sub-admin/login.jsp").forward(request, response);
+                return;
             }
         }
 

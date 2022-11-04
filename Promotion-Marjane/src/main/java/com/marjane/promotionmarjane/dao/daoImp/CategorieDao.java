@@ -24,14 +24,18 @@ public class CategorieDao extends AbstractHibernateDAO<Categorie> {
         super.delete(entity);
     }
 
-    public Categorie getOneCat(long Id) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.beginTransaction();
-        Categorie categorie = session.find(Categorie.class, Id);
-        session.getTransaction().commit();
-        session.close();
-        return categorie;
+    public Categorie getOneCat(long Id)  {
+        try {
+            Session session = getCurrentSession();
+            session.getTransaction();
+            session.beginTransaction();
+            Categorie categorie = session.find(Categorie.class, Id);
+            session.getTransaction().commit();
+            session.close();
+            return categorie;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -41,6 +45,20 @@ public class CategorieDao extends AbstractHibernateDAO<Categorie> {
             session.getTransaction();
             session.beginTransaction();
             ArrayList<Categorie> categories = (ArrayList<Categorie>) session.createQuery("SELECT c FROM Categorie c", Categorie.class).getResultList();
+            session.getTransaction().commit();
+            session.close();
+            return categories;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Categorie> getAllCategoriesThatDontHaveResponsable()  {
+        try {
+            Session session = getCurrentSession();
+            session.getTransaction();
+            session.beginTransaction();
+            ArrayList<Categorie> categories = (ArrayList<Categorie>) session.createQuery("SELECT c FROM Categorie c WHERE c.id NOT IN (SELECT r.categorieByIdCat.id FROM Responsable r)", Categorie.class).getResultList();
             session.getTransaction().commit();
             session.close();
             return categories;

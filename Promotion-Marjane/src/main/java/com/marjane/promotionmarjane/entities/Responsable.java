@@ -3,13 +3,10 @@ package com.marjane.promotionmarjane.entities;
 import jakarta.persistence.*;
 
 @Entity
-@IdClass(ResponsablePK.class)
 public class Responsable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_centre")
     private long idCentre;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_cat")
     private long idCat;

@@ -1,4 +1,4 @@
-package com.marjane.promotionmarjane.servlets.responsable;
+package com.marjane.promotionmarjane.servlets.subadmin;
 
 import com.marjane.promotionmarjane.dao.daoImp.SubAdminDao;
 import jakarta.servlet.*;
@@ -23,8 +23,10 @@ public class LoginSubAdminServlet extends HttpServlet {
        HttpSession session = request.getSession(false);
        if(session != null){
             Object check = session.getAttribute("sub");
-            if(check != null)
+            if(check != null){
                 request.getRequestDispatcher("/views/sub-admin/dashboard.jsp").forward(request,response);
+                return;
+            }
        }
         request.getRequestDispatcher("/views/sub-admin/login.jsp").forward(request,response);
     }
@@ -38,7 +40,8 @@ public class LoginSubAdminServlet extends HttpServlet {
         if(login){
             HttpSession session = request.getSession();
             session.setAttribute("sub", email);
-            response.sendRedirect("/hello-servlet");
+            session.setAttribute("subadmin", subAdminDao.getSubAdminByEmail(email));
+            response.sendRedirect("/dashboard-subadmin");
         }else{
             request.setAttribute("echo","Password or Email you entered is incorrect");
             request.getRequestDispatcher("./views/sub-admin/login.jsp").forward(request, response);

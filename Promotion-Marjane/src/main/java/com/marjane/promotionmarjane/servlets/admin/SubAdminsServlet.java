@@ -31,6 +31,22 @@ public class SubAdminsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //get parameters
+        String firstName = request.getParameter("first-name");
+        String lastName = request.getParameter("last-name");
+        String email = request.getParameter("email");
+        String centreId = request.getParameter("center");
+        //get centre
+        Centre centre = centreDao.getCentreById(Integer.parseInt(centreId));
+        //create new subAdmin
+        SubAdmin subAdmin = new SubAdmin();
+        subAdmin.setNom(lastName);
+        subAdmin.setPrenom(firstName);
+        subAdmin.setEmail(email);
+        subAdmin.setCentreById(centre);
+        //insert new subAdmin
+        subAdminDao.insert(subAdmin);
+
         doGet(request,response);
     }
 }

@@ -1,14 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-  if (session.getAttribute("admin") == null)       {
-    response.sendRedirect("/login-admin");
-  }
-%>
+
 <jsp:include page="../inc/top.jsp" />
-<div>
+<div x-data="{ open: true }">
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-  <div class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
+  <div x-show="open" class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
     <!--
       Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
@@ -42,7 +38,7 @@
           To: "opacity-0"
       -->
       <div class="absolute top-0 right-0 -mr-12 pt-2">
-        <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+        <button x-on:click="open = ! open" type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           <span class="sr-only">Close sidebar</span>
           <!-- Heroicon name: outline/x -->
           <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -96,6 +92,7 @@
             <div class="ml-3">
               <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
               <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+              <jsp:include page="../components/logout-button.jsp" />
             </div>
           </div>
         </a>
@@ -153,6 +150,7 @@
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
               <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
+              <jsp:include page="../components/logout-button.jsp" />
             </div>
           </div>
         </a>
@@ -161,7 +159,7 @@
   </div>
   <div class="md:pl-64 flex flex-col flex-1">
     <div class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
-      <button type="button" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+      <button x-on:click="open = ! open" type="button" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
         <span class="sr-only">Open sidebar</span>
         <!-- Heroicon name: outline/menu -->
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -247,12 +245,12 @@
 
                       <div class="col-span-6 sm:col-span-4">
                         <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                        <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input type="text" name="email" id="email-address" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="col-span-6 sm:col-span-3">
-                        <label for="country" class="block text-sm font-medium text-gray-700">Select Center</label>
-                        <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <label for="center" class="block text-sm font-medium text-gray-700">Select Center</label>
+                        <select id="center" name="center" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                           <option>Select a Center</option>
                             <c:forEach items="${centersSelect}" var="center">
                                 <option value="<c:out value="${center.id}" />"><c:out value="${center.nom}" /> - <c:out value="${center.ville}" /></option>

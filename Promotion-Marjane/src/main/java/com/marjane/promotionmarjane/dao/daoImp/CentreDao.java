@@ -1,23 +1,21 @@
 package com.marjane.promotionmarjane.dao.daoImp;
 
 import com.marjane.promotionmarjane.dao.AbstractHibernateDAO;
-import com.marjane.promotionmarjane.entities.Admin;
 import com.marjane.promotionmarjane.entities.Centre;
-import jakarta.persistence.Tuple;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
-import org.hibernate.query.SelectionQuery;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CentreDao extends AbstractHibernateDAO<Centre> {
 
     @Override
-    public void insert(Centre entity) throws Exception {
-        super.insert(entity);
+    public void insert(Centre entity)  {
+        try {
+            super.insert(entity);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -28,6 +26,20 @@ public class CentreDao extends AbstractHibernateDAO<Centre> {
     @Override
     public void delete(Centre entity) throws Exception {
         super.delete(entity);
+    }
+
+    public Centre findCenter(long Id)  {
+        try{
+            Session session = getCurrentSession();
+            session.getTransaction();
+            session.beginTransaction();
+            Centre centre = session.find(Centre.class, Id);
+            session.getTransaction().commit();
+            session.close();
+            return centre;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
 

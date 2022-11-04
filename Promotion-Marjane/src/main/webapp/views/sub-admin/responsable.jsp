@@ -83,18 +83,15 @@
                 </nav>
             </div>
             <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-                <a href="#" class="flex-shrink-0 group block">
-                    <div class="flex items-center">
-                        <div>
-                            <img class="inline-block h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                        </div>
+                <div class="flex-shrink-0 w-full group block">
+                    <div class="flex content-center justify-between gap-3">
                         <div class="ml-3">
-                            <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                            <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                            <jsp:include page="../components/logout-button.jsp" />
+                            <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+                            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
                         </div>
+                        <jsp:include page="../components/logout-button.jsp" />
                     </div>
-                </a>
+                </div>
             </div>
         </div>
 
@@ -158,7 +155,7 @@
     </div>
     <div class="md:pl-64 flex flex-col flex-1">
         <div class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
-            <button type="button" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <button x-on:click="open = ! open" type="button" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 <span class="sr-only">Open sidebar</span>
                 <!-- Heroicon name: outline/menu -->
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -183,27 +180,30 @@
                                             <table class="min-w-full divide-y divide-gray-200">
                                                 <thead class="bg-gray-50">
                                                 <tr>
-                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category Name</th>
-                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
-                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <!-- Odd row -->
-                                                <c:forEach items="${promotions}" var="promotion" varStatus="i" >
+                                                <c:forEach items="${responsables}" var="responsable" varStatus="i" >
                                                     <c:choose>
                                                         <c:when test="${i.count % 2 == 0 }">
                                                             <tr class="bg-white">
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.status}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.prenom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.email}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${responsable.categorieByIdCat.nom}" /></td>
                                                             </tr>
                                                         </c:when>
                                                         <c:otherwise>
                                                             <tr class="bg-gray-50">
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
-                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.status}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.prenom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.nom}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.email}" /></td>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${responsable.categorieByIdCat.nom}" /></td>
                                                             </tr>
                                                         </c:otherwise>
                                                     </c:choose>
@@ -217,91 +217,57 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 flex flex-row md:flex-col gap-4">
-                            <div>
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                <table class="min-w-full divide-y divide-gray-200">
-                                                    <thead class="bg-gray-50">
-                                                    <tr>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <!-- Odd row -->
-                                                    <c:forEach items="${responsables}" var="responsable" varStatus="i">
-                                                        <c:choose>
-                                                            <c:when test="${o.count % 2 == 0}">
-                                                                <tr class="bg-white">
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${responsable.nom}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.prenom}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.email}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.categorieByIdCat.nom}" /></td>
-                                                                </tr>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <tr class="bg-gray-50">
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${responsable.nom}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.prenom}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.email}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${responsable.categorieByIdCat.nom}" /></td>
-                                                                </tr>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:forEach>
-                                                    <!-- More people... -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                        <div class="p-4">
+                            <form action="/sub-admin/responsables" method="POST">
+                                <div class="shadow sm:rounded-md sm:overflow-hidden">
+                                    <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+                                        <div>
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Add Responsable To a Department</h3>
+                                            <p class="mt-1 text-sm text-gray-500">Use a permanent address where Responsable can recieve mail.</p>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                <table class="min-w-full divide-y divide-gray-200">
-                                                    <thead class="bg-gray-50">
-                                                    <tr>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department Name</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <!-- Odd row -->
-                                                    <c:forEach items="${categories}" var="categorie" varStatus="i" >
-                                                        <c:choose>
-                                                            <c:when test="${i.count % 2 == 0 }">
-                                                                <tr class="bg-white">
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${categorie.id}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${categorie.nom}" /></td>
-                                                                </tr>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <tr class="bg-gray-50">
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${categorie.id}" /></td>
-                                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${categorie.nom}" /></td>
-                                                                </tr>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:forEach>
-                                                    <!-- More people... -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+                                                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            </div>
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            </div>
+
+
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                                                <input type="text" name="email" id="email" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            </div>
+
+
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="categorie" class="block text-sm font-medium text-gray-700">Select Category</label>
+                                                <select id="categorie" name="categorie" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <option>Select a Categorie</option>
+                                                    <c:forEach items="${categories}" var="categorie">
+                                                        <option value="<c:out value="${categorie.id}" />"><c:out value="${categorie.nom}" /></option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                        <button name="add" type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+
 
                     </div>
                     <!-- /End replace -->

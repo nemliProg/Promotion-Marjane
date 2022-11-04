@@ -10,18 +10,21 @@ import java.util.ArrayList;
 public class AdminDao extends AbstractHibernateDAO<Admin>  {
 
 
-    public Admin getAdminByEmail(String email) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.beginTransaction();
+    public Admin getAdminByEmail(String email) {
         try {
-            Admin admin = session.createQuery("SELECT a FROM Admin a WHERE a.email = :email", Admin.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
-
-            return admin;
-        }catch (NoResultException e){
-            return null;
+            Session session = getCurrentSession();
+            session.getTransaction();
+            session.beginTransaction();
+            try {
+                Admin admin = session.createQuery("SELECT a FROM Admin a WHERE a.email = :email", Admin.class)
+                        .setParameter("email", email)
+                        .getSingleResult();
+                return admin;
+            }catch (NoResultException e){
+                return null;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -59,6 +62,7 @@ public class AdminDao extends AbstractHibernateDAO<Admin>  {
 
     @Override
     public void insert(Admin entity) throws Exception {
+
         super.insert(entity);
     }
 

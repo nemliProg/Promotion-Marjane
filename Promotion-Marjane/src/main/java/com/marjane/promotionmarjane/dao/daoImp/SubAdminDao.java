@@ -1,7 +1,6 @@
 package com.marjane.promotionmarjane.dao.daoImp;
 
 import com.marjane.promotionmarjane.dao.AbstractHibernateDAO;
-import com.marjane.promotionmarjane.entities.Responsable;
 import com.marjane.promotionmarjane.entities.SubAdmin;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
@@ -11,11 +10,17 @@ import java.util.ArrayList;
 public class SubAdminDao extends AbstractHibernateDAO<SubAdmin> {
 
 
-    public SubAdmin getSubAdminByEmail(String email) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.beginTransaction();
+    public SubAdmin getSubAdminByEmail(String email) {
+
         try {
+            Session session = null;
+            try {
+                session = getCurrentSession();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            session.getTransaction();
+            session.beginTransaction();
             SubAdmin subAdmin = session.createQuery("SELECT s FROM SubAdmin s WHERE s.email = :email", SubAdmin.class)
                     .setParameter("email", email)
                     .getSingleResult();
@@ -46,8 +51,12 @@ public class SubAdminDao extends AbstractHibernateDAO<SubAdmin> {
     }
 
 
-    public void insert(SubAdmin entity) throws Exception {
-        super.insert(entity);
+    public void insert(SubAdmin entity) {
+        try {
+            super.insert(entity);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -66,18 +75,4 @@ public class SubAdminDao extends AbstractHibernateDAO<SubAdmin> {
         }
     }
 
-
-    public void delete(SubAdmin subAdmin) {
-
-    }
-
-
-    public void update(SubAdmin subAdmin) {
-
-    }
-
-
-    public SubAdmin getOne(long Id) {
-        return null;
-    }
 }

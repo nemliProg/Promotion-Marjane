@@ -1,10 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    if (session.getAttribute("admin") != null)       {
-        response.sendRedirect("dashboard-admin");
-    }
-%>
+<%@ page session="false" %>
 <html class="h-full bg-white">
 <head>
     <title>Admin - Login</title>
@@ -16,7 +12,7 @@
     <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
             <div>
-                <img class="h-28 w-28" src="./images/logos/logo_marjane.svg" alt="logo">
+                <img class="h-28 w-28" src="../../images/logos/logo_marjane.svg" alt="logo">
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your Admin account</h2>
             </div>
 
@@ -60,7 +56,7 @@
         </div>
     </div>
     <div class="hidden lg:block relative w-0 flex-1">
-        <img class="absolute inset-0 h-full w-full object-cover" src="./images/wafihat-marjane.jpg" alt="photo marjane">
+        <img class="absolute inset-0 h-full w-full object-cover" src="../../images/wafihat-marjane.jpg" alt="photo marjane">
     </div>
 </div>
 </body>

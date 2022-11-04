@@ -1,8 +1,6 @@
 package com.marjane.promotionmarjane.dao.daoImp;
 
 import com.marjane.promotionmarjane.dao.AbstractHibernateDAO;
-import com.marjane.promotionmarjane.entities.Admin;
-import com.marjane.promotionmarjane.entities.Promotion;
 import com.marjane.promotionmarjane.entities.Responsable;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
@@ -12,11 +10,17 @@ import java.util.ArrayList;
 public class ResponsableDao extends AbstractHibernateDAO<Responsable> {
 
 
-    public Responsable getResponsableByEmail(String email) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.beginTransaction();
+    public Responsable getResponsableByEmail(String email) {
+
         try {
+            Session session = null;
+            try {
+                session = getCurrentSession();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            session.getTransaction();
+            session.beginTransaction();
             Responsable responsable = session.createQuery("SELECT r FROM Responsable r WHERE r.email = :email", Responsable.class)
                     .setParameter("email", email)
                     .getSingleResult();
@@ -49,8 +53,12 @@ public class ResponsableDao extends AbstractHibernateDAO<Responsable> {
 
 
     @Override
-    public void insert(Responsable entity) throws Exception {
-        super.insert(entity);
+    public void insert(Responsable entity) {
+        try {
+            super.insert(entity);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public ArrayList<Responsable> getAllResponsables()  {
@@ -68,17 +76,5 @@ public class ResponsableDao extends AbstractHibernateDAO<Responsable> {
     }
 
 
-    public void delete(Responsable responsable) {
 
-    }
-
-
-    public void update(Responsable responsable) {
-
-    }
-
-
-    public Responsable getOne(long Id) {
-        return null;
-    }
 }
