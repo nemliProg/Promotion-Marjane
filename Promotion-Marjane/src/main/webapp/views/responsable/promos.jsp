@@ -55,8 +55,8 @@
         <div class="flex-shrink-0 w-full group block">
           <div class="flex content-center justify-between gap-3">
             <div class="ml-3">
-              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
+              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900"><c:out value="${responsable.nom}" /> <c:out value="${responsable.prenom}" /></p>
+              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Responsable</p>
             </div>
             <jsp:include page="../components/logout-button.jsp" />
           </div>
@@ -105,7 +105,7 @@
         <div class="flex-shrink-0 w-full group block">
           <div class="flex content-center justify-between gap-3">
             <div class="ml-3">
-              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900"><c:out value="${responsable.nom}" /> <c:out value="${responsable.prenom}" /></p>
               <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Responsable</p>
             </div>
             <jsp:include page="../components/logout-button.jsp" />
@@ -158,40 +158,42 @@
                           <c:choose>
                             <c:when test="${i.count % 2 == 0 }">
                               <tr class="bg-white">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.description}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-yellow-800"> <c:out value="${promotion.status}" /></span>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.description}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                  <span class="px-2 py-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"> <c:out value="${promotion.status}" /></span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoStartDate}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoEndDate}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2">
-                                  <form method="post" action="/responsable/promos/accept" >
-                                    <button name="accept" type="submit" class="py-2 px-2 mr-2 mb-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Accept</button>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoStartDate}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoEndDate}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium flex items-center gap-2">
+                                  <form class="m-0" method="post" action="/responsable/promos" >
+                                    <input type="hidden" name="id" value="<c:out value="${promotion.id}" />">
+                                    <button name="accept" type="submit" class="py-2 px-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Accept</button>
                                   </form>
                                   <a href="/responsable/promos/reject?id=<c:out value="${promotion.id}" />">
-                                    <button  type="button" class="py-2 px-2 mr-2 mb-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Reject</button>
+                                    <button  type="button" class="py-2 px-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Reject</button>
                                   </a>
                                 </td>
                               </tr>
                             </c:when>
                             <c:otherwise>
-                              <tr class="bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.description}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-yellow-800"> <c:out value="${promotion.status}" /></span>
+                              <tr class="bg-gray-50 py-2">
+                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900"><c:out value="${promotion.categorieByIdCat.nom}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.pourcentage}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.description}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                  <span class="px-2 py-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"> <c:out value="${promotion.status}" /></span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoStartDate}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoEndDate}" /></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2">
-                                  <form method="post" action="/responsable/promos/accept" >
-                                    <button name="accept" type="submit" class="py-2 px-2 mr-2 mb-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Accept</button>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoStartDate}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500"><c:out value="${promotion.promoEndDate}" /></td>
+                                <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium flex items-center gap-2">
+                                  <form class="m-0" method="post" action="/responsable/promos" >
+                                    <input type="hidden" name="id" value="<c:out value="${promotion.id}" />">
+                                    <button type="submit" class="py-2 px-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Accept</button>
                                   </form>
                                   <a href="/responsable/promos/reject?id=<c:out value="${promotion.id}" />">
-                                    <button  type="submit" class="py-2 px-2 mr-2 mb-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Reject</button>
+                                    <button  type="submit" class="py-2 px-2 text-sm font-medium text-[#085da8] focus:outline-none bg-white rounded-lg border border-[#085da8] hover:bg-[#085da8] hover:bg-border-[#085da8] hover:text-white ">Reject</button>
                                   </a>
                                 </td>
                               </tr>
@@ -202,10 +204,23 @@
                         <!-- More people... -->
                         </tbody>
                       </table>
+                      <c:if test="${totalOfPages > 1}">
+                        <nav aria-label="Page navigation">
+                          <ul class="inline-flex">
+                            <li><button class="h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-l-lg focus:shadow-outline hover:bg-indigo-100">Prev</button></li>
+                            <c:forEach var="i" begin="1" end="${totalOfPages}" step="1">
+                              <li><a href="${pageContext.request.contextPath}/responsable/promos/<c:out value="${i}" />" class="flex items-center h-10 px-5 align-middle <c:if test="${currentPage != i}"><c:out value="text-indigo-600" /> </c:if> transition-colors duration-150 bg-white focus:shadow-outline hover:bg-indigo-100 <c:if test="${currentPage == i}"><c:out value="text-white bg-blue-800 hover:bg-blue-800" /> </c:if>" ><c:out value="${ i }" /></a></li>
+                            </c:forEach>
+                            <li><button class="h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100">Next</button></li>
+                          </ul>
+                        </nav>
+                      </c:if>
                     </div>
-                    <h3 class="p-4 mt-2 text-[#ffe800] bg-[#085da8] rounded text-center text-xl ">
-                      <c:out value="${message}" />
-                    </h3>
+                    <c:if test="${message != null}" >
+                      <h3 class="p-4 mt-2 text-[#ffe800] bg-[#085da8] rounded text-center text-xl ">
+                        <c:out value="${message}" />
+                      </h3>
+                    </c:if>
                   </div>
                 </div>
               </div>
