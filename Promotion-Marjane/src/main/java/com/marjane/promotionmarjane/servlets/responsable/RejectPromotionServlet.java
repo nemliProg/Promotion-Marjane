@@ -1,6 +1,7 @@
 package com.marjane.promotionmarjane.servlets.responsable;
 
 import com.marjane.promotionmarjane.dao.daoImp.PromotionDao;
+import com.marjane.promotionmarjane.entities.Promotion;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -25,6 +26,14 @@ public class RejectPromotionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String explanation = request.getParameter("explanation");
 
+        Promotion promotion = promotionDao.get(id);
+        promotion.setStatus("REJECTED");
+        promotion.setExplanation(explanation.trim());
+        promotionDao.updatePromotion(promotion);
+
+        response.sendRedirect("/responsable/promos");
     }
 }

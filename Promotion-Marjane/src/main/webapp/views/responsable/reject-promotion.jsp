@@ -79,8 +79,8 @@
         <div class="flex-shrink-0 w-full group block">
           <div class="flex content-center justify-between gap-3">
             <div class="ml-3">
-              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
+              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900"><c:out value="${responsable.nom}" /> <c:out value="${responsable.prenom}" /></p>
+              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Responsable</p>
             </div>
             <jsp:include page="../components/logout-button.jsp" />
           </div>
@@ -129,8 +129,8 @@
         <div class="flex-shrink-0 w-full group block">
           <div class="flex content-center justify-between gap-3">
             <div class="ml-3">
-              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Super Admin</p>
+              <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900"><c:out value="${responsable.nom}" /> <c:out value="${responsable.prenom}" /></p>
+              <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Responsable</p>
             </div>
             <jsp:include page="../components/logout-button.jsp" />
           </div>
@@ -163,9 +163,10 @@
                   <div class="grid grid-cols-6 gap-6">
 
                     <div class="sm:col-span-6">
-                      <label for="desc" class="block text-sm font-medium text-gray-700"> Explanation of rejecting the promotion </label>
+                      <input type="hidden" name="id" value="<c:out value="${id}" />">
+                      <label for="explanation" class="block text-sm font-medium text-gray-700"> Explanation of rejecting the promotion </label>
                       <div class="mt-1">
-                        <textarea id="desc" name="desc" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                        <textarea id="explanation" name="explanation" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
                       </div>
                       <p class="mt-2 text-sm text-gray-500">Write a few sentences to describe the rejection.</p>
                     </div>
@@ -173,7 +174,7 @@
                   </div>
                 </div>
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button name="id" value="<c:out value="${id}" />" type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reject</button>
+                  <button type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reject</button>
                 </div>
               </div>
             </form>
